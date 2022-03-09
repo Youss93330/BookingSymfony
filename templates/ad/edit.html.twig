@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+{% block title %}Modifier une annonce{% endblock %}
+{% form_theme form 'ad/_collections.html.twig' %}
+
+
+{%  block body %}
+	<div class="container">
+		<h2>Modification d'une annonce</h2>
+
+		{{ form_start(form) }}
+
+		{{ form_widget(form) }}
+
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+		{{ form_end(form) }}
+	</div>
+{% endblock %}
+
+
+{% block _annonce_images_widget %}
+
+	<p>Ici vous pouvez ajouter des images supplémentaires</p>
+
+	<input type="hidden" id="widget-count" value="0">
+
+	<button type="button" class="btn btn-primary" id="add-image">Ajouter une image</button>
+
+	{{ form_widget(form) }}
+
+{% endblock %}
+
+
+{% block _annonce_images_entry_row %}
+
+	{{ form_widget(form) }}
+
+{% endblock %}
+
+
+{% block _annonce_images_entry_widget %}
+	<div class="form-group mt-2" id="bloc_{{id}}">
+		<div class="row">
+			<div class="col-md-10 col-10">
+				<div class="row">
+					<div class="col">
+						{{ form_widget(form.url) }}
+					</div>
+					<div class="col">
+						{{ form_widget(form.caption) }}
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 col-2">
+			      <button type="button" class="btn btn-danger" data-action="delete" data-target="#bloc_{{id}}">X</button>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+
+
+
+{% block javascripts %}
+	<script src="{{asset('js/ad.js')}}"></script>
+{% endblock %}
