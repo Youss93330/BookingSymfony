@@ -14,33 +14,58 @@
 					<li class="nav-item">
 						<a class="nav-link active" href="{{path('homepage')}}">
 							<font style="vertical-align: inherit;">
-								<font style="vertical-align: inherit;">Accueil
-								</font>
+								<font style="vertical-align: inherit;">Accueil</font>
 							</font>
-							<span class="visually-hidden">
-								<font style="vertical-align: inherit;">
-									<font style="vertical-align: inherit;">(courant)</font>
-								</font>
-							</span>
 						</a>
 					</li>
-				</ul>
-				<ul class="navbar-nav ml-auto">
+
 					<li class="nav-item">
-						<a class="nav-link active" href="#">
+						<a class="nav-link active" href="{{path('ads_list')}}">
 							<font style="vertical-align: inherit;">
-								<font style="vertical-align: inherit;">Mon compte
-								</font>
+								<font style="vertical-align: inherit;">Nos annonces</font>
 							</font>
-							<span class="visually-hidden">
-								<font style="vertical-align: inherit;">
-									<font style="vertical-align: inherit;">(courant)</font>
-								</font>
-							</span>
 						</a>
 					</li>
 				</ul>
 
+				<ul class="navbar-nav ml-auto">
+
+				{% if app.user %}
+
+					<div class="dropdown">
+                         <button class="btn btn-primary dropdown-toggle" type="button" id="accountDropdownLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{{ app.user.avatar}}" alt="Avatar de {{ app.user.fullName }}" class="avatar avatar-small">
+							 {{ app.user.fullName}}
+                         </button>
+
+                         <ul class="dropdown-menu" aria-labelledby="accountDropdownLink">
+						    <li><a class="dropdown-item" href="{{path('ads_create')}}">Créer une annonce</a></li>
+                            <li><a class="dropdown-item" href="{{path('account_home')}}">Mon compte</a></li>
+                            <li><a class="dropdown-item" href="{{path('account_profile')}}">Modifier mon profil</a></li>
+							<li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{path('account_logout')}}">Déconnexion</a></li>
+                         </ul>
+                    </div>
+					
+				{% else %}
+				    <li class="nav-item">
+						<a class="nav-link active" href="{{path('account_register')}}">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">Inscription</font>
+							</font>
+						</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link active" href="{{path('account_login')}}">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">Connexion</font>
+							</font>
+						</a>
+					</li>
+				{% endif %}
+
+				</ul>
 			</div>
 		</div>
 	</nav>

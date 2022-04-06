@@ -10,7 +10,7 @@
 		<div class="container mt-5">
 			<h1>{{ad.title}}</h1>
 			<p>{{ad.introduction}}</p>
-			<p class="h5">{{ad.rooms}}chambres pour<strong>{{ad.price}}
+			<p class="h5">{{ad.rooms}}chambres pour <strong>{{ad.price}}
 					&euro; / nuit</strong>
 			</p>
 			<a href="#" class="btn btn-warning mt-3">Réserver !</a>
@@ -20,7 +20,9 @@
 	<div class="container">
 		<div class="row mt-5">
 			<div class="col-md-8 mb-3">
+			  <div class="col-sm-6">
 				{{ad.content|raw}}
+			  </div>
 
 				<!-- Carousel -->
 				<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -56,19 +58,25 @@
 
 		    <!-- Contenu -->
 			<div class="col">
+			{% set a = ad.author %}
 				<div class="row">
 					<div class="col-4">
-						<img src="https://picsum.photos/64/64">
+				        <a href="{{path('user_show',{'slug':a.slug })}}">
+						    <img src="{{a.avatar}}" alt="{{ a.fullName }}" class="avatar avatar-medium">
+						</a>
 					</div>
+
 					<div class="col">
-						<h3>John Doe</h3>
-						<span class="badge badge-warning">3 annonces</span>
+					    <a href="{{path('user_show',{'slug':a.slug })}}">
+						    <h3>{{ a.fullName }}</h3>
+						</a>
+						<span class="badge rounded-pill bg-warning text-dark">{{a.ads| length}} {% if a.ads| length > 1 %} annonces {% else %} annonce {% endif %}</span>
 					</div>
+
 				</div>
-				<div class="mt-3">
-					<p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
-					<p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
-					<p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+
+				<div class="col py-3">
+					{{ a.introduction | raw }} 
 				</div>
 
 			</div>
