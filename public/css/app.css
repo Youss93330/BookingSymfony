@@ -1,4 +1,8 @@
 body{background-color:#9c9c9c;color:#000000;}
+
+a{color:rgb(124, 116, 45);}
+a:hover{color:rgb(216, 206, 115);}
+
 .container{margin-top: 1.2em;}
 
 .ad-title{background-size:cover;background-position:center center;padding:1em;}
@@ -16,3 +20,5 @@ body{background-color:#9c9c9c;color:#000000;}
 .avatar-small{max-width:32px;max-height:32px;}
 
 footer{bottom:0;width:100%;color:#f3efef;}
+
+.datepicker-days:hover{color:rgb(2, 96, 219)!important;}
