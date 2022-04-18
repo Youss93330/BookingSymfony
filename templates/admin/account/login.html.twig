@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion administration</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/css/app.css">
+		<link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+    <main class="container">
+
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card text-white bg-primary mb-3">
+
+                    <div class="card-header">
+                        <h1 class="text-center text-white">Booking</h1>
+                        <h4 class="card-title text-center"><i class="fas fa-lock"></i> Connexion a l'administration</h4>
+                        <hr>
+                    </div>
+
+                    <div class="card-body">
+
+                        {% if hasError %}
+                            <div class="alert alert-danger">
+                                <p>Les informations fournies sont erronnées</p>
+                            </div>
+                        {% endif %}
+
+                        <form method="post">
+                            <div class="form-group">
+                                <label for="username">Email</label>
+                                <input type="email" name="_username" id="username" placeholder="Votre email" class="form-control" value="{{username}}">
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <label for="password">Mot de passe</label>
+                                <input type="password" name="_password" id="password" placeholder="Votre mot de passe" class="form-control">
+                            </div>
+
+                            <div class="form-group offset-3 mt-3">
+                                <button type="submit" class="btn btn-dark"><i class="fas fa-lock-open"></i> Connexion</button>
+                                <a href="{{path('homepage')}}" class="btn btn-link text-white">Retour sur le site</a>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+    
+</body>
+</html>
+

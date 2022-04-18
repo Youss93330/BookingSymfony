@@ -19,6 +19,11 @@ a:hover{color:rgb(216, 206, 115);}
 
 .avatar-small{max-width:32px;max-height:32px;}
 
+.avatar-xs{max-width:26px;max-height:26px;}
+
 footer{bottom:0;width:100%;color:#f3efef;}
 
 .datepicker-days:hover{color:rgb(2, 96, 219)!important;}
+
+blockquote{font-style:oblique;color:rgb(20, 107, 122);}
+.rating i{color:goldenrod;}
