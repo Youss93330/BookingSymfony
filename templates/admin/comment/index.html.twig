@@ -3,7 +3,7 @@
 {% block title %}Gestion des commentaires{% endblock %}
 
 {% block body %}
-    <main class="container-fluid">
+    <main class="container-fluid my-3">
         <h1 class="h3 my-4 p-3">Gestion des commentaires</h1>
 
            <div class="row mx-3">
@@ -22,7 +22,7 @@
                     </thead>
 
                    <tbody>
-                       {% for comment in comments %}
+                       {% for comment in pagination.data %}
 
                        <tr class="table-secondary">
                            <td>{{comment.id}}</td>
@@ -47,7 +47,7 @@
 
                </table>
 
-           </div>
+               {{pagination.display()}}
 
     </main>
 {% endblock %}

@@ -3,7 +3,7 @@
 {% block title %}Gestion des réservations{% endblock %}
 
 {% block body %}
-    <main class="container-fluid px-5">
+    <main class="container-fluid px-5 my-3">
 
         <h1 class="h3 my-5">Gestion des réservations</h1>
         <table class="table">
@@ -19,7 +19,7 @@
             </thead>
 
             <tbody>
-                {% for booking in bookings %}
+                {% for booking in pagination.data %}
                 <tr class="table-secondary">
                     <td>{{booking.id}}</td>
                     <td>{{booking.createdAt|date('d/m/Y H:i')}}</td>
@@ -39,6 +39,8 @@
             </tbody>
 
         </table>
+
+        {{pagination.display()}}
 
     </main>
 {% endblock %}
