@@ -2,8 +2,8 @@
 
 {% block body %}
 	<!-- Menu titre -->
-	<main class="container">
-		<h1 class="h1 my-5">{{titre}}</h1>
+	<main class="container my-3">
+		<h1 class="h1 my-5"><i class="fa-solid fa-bed fa-xl"></i> Booking</h1>
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
 				<a class="nav-link active" data-bs-toggle="tab" href="#home">Home</a>
@@ -26,122 +26,34 @@
 
 
 		<!-- Annonces -->
-		<h3 class="h1 mt-5">Offres spéciales</h3>
+		<h3 class="h1 mt-5">Meilleurs Annonces</h3>
 		<section class="row">
 
-			<!-- Article -->
-			<article class="col-md-4">
-				<div class="card mb-3">
-					<h3 class="h3 card-header text-white bg-primary">3 chambres,
-						<strong>350 &euro;/ nuit</strong>
-					</h3>
-					<div class="card-body text-white bg-dark">
-						<h5 class="card-title">Loft à Londres</h5>
-						<img src="https://placeimg.com/640/480/arch" class="d-block user-select-none" width="100%" height="200" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveaspectratio="xMidYMid slice" viewbox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
-							<rect width="100%" height="100%" fill="#868e96"></rect>
-						</img>
-						<p class="card-text mt-3">Lorem ipsum dolor sit amet. Est dolores odio qui omnis adipisci qui tempora iste ut voluptatem. Et nobis esse est dignissimos numquam aut veniam autem qui asperiores deserunt. Quo possimus ipsa vel tempore asperiores aut deserunt perspiciatis.Ut illo modi ut voluptates dolores At quaerat laborum ut ipsum autem.</p>
-						<a href="#" class="btn btn-primary">+ d'infos</a>
-					</div>
-					<div class="card-footer text-muted">
-						Pas encore noté
-					</div>
-				</div>
-			</article>
+			{% for data in ads %}
+			{% include 'ad/_ad.html.twig' with {'ad':data.annonce} %}
 
-			<!-- Article -->
-			<article class="col-md-4">
-				<div class="card mb-3">
-					<h3 class="h3 card-header text-white bg-primary">5 chambres,
-						<strong>650 &euro;/ nuit</strong>
-					</h3>
-					<div class="card-body text-white bg-dark">
-						<h5 class="card-title">Maison à New-York</h5>
-						<img src="https://placeimg.com/640/480/nature" class="d-block user-select-none" width="100%" height="200" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveaspectratio="xMidYMid slice" viewbox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
-							<rect width="100%" height="100%" fill="#868e96"></rect>
-						</img>
-						<p class="card-text mt-3">Lorem ipsum dolor sit amet. Est dolores odio qui omnis adipisci qui tempora iste ut voluptatem. Et nobis esse est dignissimos numquam aut veniam autem qui asperiores deserunt. Quo possimus ipsa vel tempore asperiores aut deserunt perspiciatis.Ut illo modi ut voluptates dolores At quaerat laborum ut ipsum autem.</p>
-						<a href="#" class="btn btn-primary">+ d'infos</a>
-					</div>
-					<div class="card-footer text-muted">
-						Pas encore noté
-					</div>
-				</div>
-			</article>
-
-			<!-- Article -->
-			<article class="col-md-4">
-				<div class="card mb-3">
-					<h3 class="h3 card-header text-white bg-primary">2 chambres,
-						<strong>250 &euro;/ nuit</strong>
-					</h3>
-					<div class="card-body text-white bg-dark">
-						<h5 class="card-title">Appartement à Cannes</h5>
-						<img src="https://placeimg.com/640/480/tech" class="d-block user-select-none" width="100%" height="200" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveaspectratio="xMidYMid slice" viewbox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
-							<rect width="100%" height="100%" fill="#868e96"></rect>
-						</img>
-						<p class="card-text mt-3">Lorem ipsum dolor sit amet. Est dolores odio qui omnis adipisci qui tempora iste ut voluptatem. Et nobis esse est dignissimos numquam aut veniam autem qui asperiores deserunt. Quo possimus ipsa vel tempore asperiores aut deserunt perspiciatis.Ut illo modi ut voluptates dolores At quaerat laborum ut ipsum autem.</p>
-						<a href="#" class="btn btn-primary">+ d'infos</a>
-					</div>
-					<div class="card-footer text-muted">
-						Pas encore noté
-					</div>
-				</div>
-			</article>
+			{% endfor %}
 		</section>
 
 
-		<!-- Meilleurs Annonces -->
+		<!-- Meilleurs Annonçeurs -->
 		<h3 class="h1 mt-5">Nos meilleurs annonçeurs</h3>
 		<section class="row">
-
+		
+			{% for data in users %}
+		
 			<!-- Annonçeur -->
-			<article class="col-md-3">
+			<article class="col">
 				<div class="card mb-3">
-					<h3 class="h5 card-header text-primary bg-success">John Doe</h3>
+					<h3 class="h5 card-header text-primary bg-success">{{data.user.fullName}}</h3>
 					<div class="card-body border-success">
-						<img src="https://picsum.photos/64/64" alt="avatar de ..." class="float-left mr-3">
-						<p class="card-text mt-3">Lorem ipsum dolor sit amet. Est dolores odio qui omnis adipisci qui tempora iste ut voluptatem. Et nobis esse est dignissimos numquam aut veniam autem qui asperiores deserunt. Quo possimus ipsa vel tempore asperiores aut deserunt perspiciatis.Ut illo modi ut voluptates dolores At quaerat laborum ut ipsum autem.<p>
-						<a href="#" class="btn btn-success text-primary">+ d'infos</a>
+						<img src="{{data.user.avatar}}" alt="avatar de {{data.user.fullName}}" class="float-left mr-3">
+						<p class="card-text mt-3">{{data.user.introduction}}<p>
+							<a href="{{path('user_show',{'slug':data.user.slug})}}" class="btn btn-success text-primary">+ d'infos</a>
 					</div>
 				</div>
 			</article>
-
-			<!-- Annonçeur -->
-			<article class="col-md-3">
-				<div class="card mb-3">
-					<h3 class="h5 card-header text-primary bg-success">Marie Luck</h3>
-					<div class="card-body border-success">
-						<img src="https://picsum.photos/64/64" alt="avatar de ..." class="float-left mr-3">
-						<p class="card-text mt-3">Lorem ipsum dolor sit amet. Est dolores odio qui omnis adipisci qui tempora iste ut voluptatem. Et nobis esse est dignissimos numquam aut veniam autem qui asperiores deserunt. Quo possimus ipsa vel tempore asperiores aut deserunt perspiciatis.Ut illo modi ut voluptates dolores At quaerat laborum ut ipsum autem.<p>
-						<a href="#" class="btn btn-success text-primary">+ d'infos</a>
-					</div>
-				</div>
-			</article>
-
-			<!-- Annonçeur -->
-			<article class="col-md-3">
-				<div class="card mb-3">
-					<h3 class="h5 card-header text-primary bg-success">Jean Dupont</h3>
-					<div class="card-body border-success">
-						<img src="https://picsum.photos/64/64" alt="avatar de ..." class="float-left mr-3">
-						<p class="card-text mt-3">Lorem ipsum dolor sit amet. Est dolores odio qui omnis adipisci qui tempora iste ut voluptatem. Et nobis esse est dignissimos numquam aut veniam autem qui asperiores deserunt. Quo possimus ipsa vel tempore asperiores aut deserunt perspiciatis.Ut illo modi ut voluptates dolores At quaerat laborum ut ipsum autem.<p>
-						<a href="#" class="btn btn-success text-primary">+ d'infos</a>
-					</div>
-				</div>
-			</article>
-
-			<!-- Annonçeur -->
-			<article class="col-md-3">
-				<div class="card mb-3">
-					<h3 class="h5 card-header text-primary bg-success">Amich Reda</h3>
-					<div class="card-body border-success">
-						<img src="https://picsum.photos/64/64" alt="avatar de ..." class="float-left mr-3">
-						<p class="card-text mt-3">Lorem ipsum dolor sit amet. Est dolores odio qui omnis adipisci qui tempora iste ut voluptatem. Et nobis esse est dignissimos numquam aut veniam autem qui asperiores deserunt. Quo possimus ipsa vel tempore asperiores aut deserunt perspiciatis. Ut illo modi ut voluptates dolores At quaerat laborum ut ipsum autem.<p>
-						<a href="#" class="btn btn-success text-primary">+ d'infos</a>
-					</div>
-				</div>
-			</article>
+			{% endfor %}
 		</section>
 	</main>
 {% endblock %}

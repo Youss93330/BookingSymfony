@@ -73,4 +73,19 @@ class UserRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findBestUsers($limit = 4){
+
+        return $this->createQueryBuilder('u')
+                    ->select('u as user, AVG(c.rating) as avgRatings,COUNT(c) as sumComments')
+                    ->join('u.ads','a')
+                    ->join('a.comments','c')
+                    ->groupBy('u')
+                    ->having('sumComments > 3')
+                    ->orderBy('avgRatings','DESC')
+                    ->setMaxResults($limit)
+                    ->getQuery()
+                    ->getResult()
+                    ;
+    }
 }
